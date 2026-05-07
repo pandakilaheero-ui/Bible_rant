@@ -1,0 +1,421 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+footer {
+  text-align: center;
+  padding: 1rem;
+  background-color: rgb(214, 214, 214);
+  border: 10px double rgb(94, 94, 94);
+  border-radius: 10px;
+  margin: 1rem auto;
+  max-width: 1200px;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+   overflow-x: hidden;
+  align-items: center;
+  background-color: rgb(75, 3, 3);
+  padding: 1rem ;
+  font-family: Arial, sans-serif;
+  background-image: url("cross.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  flex-direction: column;
+  display: flex;
+}
+
+.profile,
+.skills,
+.timeline {
+  background-color: rgb(214, 214, 214);
+  border: 10px double rgb(94, 94, 94);
+  border-radius: 10px;
+  padding: 2rem;
+  margin: 1rem auto;
+  max-width: 1200px;
+}
+
+nav {
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;  
+  background-color: transparent;
+  border-radius: 10px;
+  padding: 1rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+nav h1 {
+  font-size: clamp(1.5rem, 5vw, 2.5rem);
+}
+
+nav ul {
+  display: flex;
+  list-style-type: none;
+  gap: 0;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+li {
+  padding: 0.75rem 1.25rem;
+  margin: 0.25rem;
+  border-radius: 10px;
+  transition: background-color 0.5s ease;
+}
+
+li a {
+  text-decoration: none;
+  color: inherit;
+  font-size: clamp(0.9rem, 2vw, 1rem);
+}
+
+li:hover {
+  background-color: rgb(142, 26, 26);
+}
+
+main {
+  margin: 2rem;
+}
+
+main.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  width: 100%;
+}
+
+form {
+  text-align: center;
+  flex: 1;
+  min-width: 250px;
+  padding: clamp(1rem, 5vw, 2rem);
+  background-color: rgb(214, 214, 214);
+  border: 10px double rgb(94, 94, 94);
+  border-radius: 10px;
+  font-size: clamp(0.9rem, 2vw, 1rem);
+}
+
+
+aside {
+  text-align: center;
+  justify-content: center;
+  flex: 0 1 250px;
+  background: #ca5d5d;
+  padding: 1rem;
+  border-radius: 8px;
+  font-size: clamp(0.9rem, 2vw, 1rem);
+}
+
+@media (max-width: 600px) {
+  nav {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  nav ul {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 768px) {
+  main.card-grid {
+    grid-template-columns: 1fr;
+  }
+
+  aside {
+    flex: 1;
+    min-width: 100%;
+  }
+
+  .container {
+   aspect-ratio: 3 / 4;
+  }
+
+  nav {
+    justify-content: center;
+  }
+
+  nav h1 {
+    width: 100%;
+    text-align: center;
+  }
+
+  nav ul {
+    justify-content: center;
+    width: 100%;
+  }
+
+  li {
+    padding: 0.5rem 0.75rem;
+    margin: 0.25rem;
+  }
+
+.slide {
+  min-width: 100%;
+}
+  
+}
+
+@media (min-width: 768px) {
+  .slide {
+    min-width: 50%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .slide {
+    min-width: 25%;
+  }
+}
+
+.slideshow {
+  width: 100%;
+  max-width: 1200px;
+  margin: auto;
+  overflow: hidden;
+  position: relative;
+}
+
+.slides-track {
+  display: flex;
+  transition: transform 0.5s ease;
+  width: 100%;
+}
+
+.slide {
+  min-width: 100%;
+  position: relative;
+  padding: 5px;
+}
+
+.slide.active {
+  display: block;
+}
+
+.slide img {
+  width: 100%;
+  height: auto;
+  max-height: 500px;
+  object-fit: contain;
+   position: relative;
+  z-index: 3;
+}
+
+.slide:hover img {
+  opacity: 0.1;
+}
+
+.bg {
+  position: absolute;
+  inset: 0;
+  background-image: url("crownofthorns.jpg");
+  background-size: cover;
+  background-position: center;
+  filter: blur(8px);
+  transition: filter 0.5s ease;
+  z-index: 0;
+}
+
+.slide:hover .bg {
+  filter: blur(0px);
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: rgba(0,0,0,0.5);
+  color: white;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  z-index: 3;
+  font-size: clamp(1rem, 3vw, 1.5rem);
+  padding: 1rem;
+}
+.slide:hover .overlay {
+  opacity: 1;
+}
+
+
+.prev, .next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.5);
+  color: white;
+  border: none;
+  padding: 12px 18px;
+  cursor: pointer;
+  font-size: 24px;
+  z-index: 5;
+  border-radius: 5px;
+}
+
+.prev {
+  left: 10px;
+}
+
+.next {
+  right: 10px;
+}
+
+.prev:hover, .next:hover {
+  background: rgba(0,0,0,0.8);
+}
+
+.details {
+  display: none;
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.95);
+  color: white;
+  z-index: 20;
+  padding: 2rem;
+  font-size: 1.2rem;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.details.active {
+  display: flex;
+}
+
+
+
+
+.container {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+}
+
+.container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: relative;
+  z-index: 2;
+  border-radius: 6px;
+  transition: opacity 0.5s ease;
+}
+
+.container:hover img {
+  opacity: 0;
+}
+
+.container .bg {
+  position: absolute;
+  inset: 0;
+  background-image: url("crownofthorns.jpg");
+  background-size: cover;
+  background-position: center;
+  filter: blur(8px);
+  transition: filter 0.5s ease;
+  z-index: 1;
+}
+
+.container:hover .bg {
+  filter: blur(0px);
+}
+
+.container .overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: rgba(0,0,0,0.5);
+  color: white;
+  padding: 1.5rem;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  z-index: 3;
+  font-size: 1.2rem;
+}
+
+.container:hover .overlay {
+  opacity: 1;
+}
+
+.section-divider {
+  border: none;
+  height: 3px;
+  width: 80%;
+  margin: 40px auto;
+  background: linear-gradient(to right, transparent, white, transparent);
+}
+
+/* Smoother slide transitions */
+.slides-track {
+  will-change: transform;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Disabled nav button state */
+.prev.disabled,
+.next.disabled {
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+/* Smoother overlay / image hover */
+.slide img,
+.container img {
+  transition: opacity 0.4s ease;
+}
+
+.slide .overlay,
+.container .overlay {
+  transition: opacity 0.4s ease;
+}
+
+.slide .bg,
+.container .bg {
+  transition: filter 0.4s ease;
+}
+
+/* Details panel fade in */
+.details {
+  transition: opacity 0.3s ease;
+  opacity: 0;
+}
+
+.details.active {
+  opacity: 1;
+}
+
+/* Smooth page scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Nav link transitions */
+li {
+  transition: background-color 0.3s ease;
+}
+
+/* Subtle button press feel */
+.prev, .next {
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+
+.prev:active, .next:active {
+  transform: translateY(-50%) scale(0.94);
+}
